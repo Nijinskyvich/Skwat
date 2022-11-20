@@ -7,14 +7,6 @@ Created on Sat Nov 19 16:39:59 2022
 
 from pytube import YouTube
 import os
-import subprocess
-
-def convert_to_wav(file):
-    # convert mp3 to wav file
-    newfile = file.split('.')[0]
-    subprocess.call(["ffmpeg", "-i", file,
-                     f"{newfile}.wav"])
-    return newfile
 
 def youtube_download(url):
     #yt_letsgo = YouTube('https://www.youtube.com/watch?v=YZAQBG4Qbt8')
@@ -29,11 +21,12 @@ def youtube_download(url):
     base, ext = os.path.splitext(out_file)
     new_file = base + '.mp3'
     os.rename(out_file, new_file)
-    return new_file
 
-def load_sound(url):
-    new_file = youtube_download(url)
-    return convert_to_wav(new_file)
+    import subprocess
+    subprocess.call(["ffmpeg", "-i", new_file,
+                     f"{base}.wav"])
+    return base + '.wav'
+
 
 '''
 # %% Try text to voice

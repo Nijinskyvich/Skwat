@@ -14,10 +14,10 @@ import pygame
 import threading
 
 from beatDetection import get_beats
-from audio import load_sound
+from audio import youtube_download
 
 
-song_file = load_sound('https://www.youtube.com/watch?v=auAfDfZY7zI')
+song_file = youtube_download('https://www.youtube.com/watch?v=auAfDfZY7zI')
 
 # get song beats
 beat_times = get_beats(song_file)
@@ -57,12 +57,12 @@ font = pygame.font.Font('freesansbold.ttf', 32)
 text = font.render('Score :', True, green, blue)
 
 textRect = text.get_rect()
- 
+
 textRect.center = (width // 2, height // 2)
 
 
-imp = pygame.image.load("SquatUp.png").convert()
-imp2 = pygame.image.load("SquatDown.png").convert()
+imp = pygame.image.load("./Tim/SquatUp.png").convert()
+imp2 = pygame.image.load("./Tim/SquatDown.png").convert()
 
 
 done = False
@@ -106,7 +106,7 @@ for i in range(100):
                 if random.random() < 0.02:
                     pygame.mixer.Channel(1).play(pygame.mixer.Sound("goodjob.wav"))
                 print("GOOD")
-                
+
 
             squat_time = squat_time_now
 
@@ -137,7 +137,7 @@ for i in range(100):
                 print("YOU'RE TRASH")
             else:
                 print("GOOD")
-                
+
 
     #Put voice generation bit here
     display_surface.blit(imp, (0,0))
@@ -154,7 +154,7 @@ for i in range(100):
                 running = False
                 break # break out of the for loop
     if done:
-        break 
+        break
 
 pygame.display.quit()
 pygame.quit()
