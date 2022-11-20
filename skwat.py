@@ -78,8 +78,8 @@ for i in range(100):
         string = line.decode().strip()
         if string == "Squat":
             squat_buffer = 2
-            #display_surface.blit(imp2, (0,0))
-            #pygame.display.update()
+            display_surface.blit(imp2, (0,0))
+            pygame.display.update()
             squat_time_now = time.time()
 
             # find index of closest beat
@@ -98,6 +98,7 @@ for i in range(100):
             # play counting sound - generated using pyttsx
             squat_count += 1
             pygame.mixer.Channel(2).play(pygame.mixer.Sound(f"./audio_count/{squat_count} squat.wav"))
+            time.sleep(0.1)
 
             if squat_time_now - squat_time > 20:
                 pygame.mixer.Channel(1).play(pygame.mixer.Sound("Lets Go.wav"))
@@ -115,8 +116,8 @@ for i in range(100):
 
         if string == "PushUp":
             squat_buffer = 2
-            #display_surface.blit(imp2, (0,0))
-            #pygame.display.update()
+            display_surface.blit(imp2, (0,0))
+            pygame.display.update()
             pushup_time_now = time.time()
 
             index, value = min(enumerate(beat_times), key=lambda x: abs(x[1] - time.time() + start_song_time))
@@ -143,13 +144,16 @@ for i in range(100):
                 print("YOU'RE TRASH")
             else:
                 print("GOOD")
+            time.sleep(0.1)
+
 
 
     #Put voice generation bit here
-    if squat_buffer == 1:
-        display_surface.blit(imp2, (0,0))
-    else:
-        display_surface.blit(imp, (0,0))
+    #if squat_buffer == 1:
+    #    display_surface.blit(imp2, (0,0))
+    #else:
+    #   display_surface.blit(imp, (0,0))
+    display_surface.blit(imp, (0,0))
 
     display_surface.blit(text, textRect)
     pygame.display.update()
