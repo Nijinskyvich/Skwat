@@ -68,15 +68,18 @@ imp2 = pygame.image.load("./Tim/SquatDown.png").convert()
 done = False
 running = True
 score = 0
-
+squat_buffer = 0
 
 for i in range(100):
     line = ser.readline()
+    if squat_buffer >= 0:
+        squat_buffer -=1
     if line:
         string = line.decode().strip()
         if string == "Squat":
-            display_surface.blit(imp2, (0,0))
-            pygame.display.update()
+            squat_buffer = 2
+            #display_surface.blit(imp2, (0,0))
+            #pygame.display.update()
             squat_time_now = time.time()
 
             # find index of closest beat
@@ -111,6 +114,9 @@ for i in range(100):
             squat_time = squat_time_now
 
         if string == "PushUp":
+            squat_buffer = 2
+            #display_surface.blit(imp2, (0,0))
+            #pygame.display.update()
             pushup_time_now = time.time()
 
             index, value = min(enumerate(beat_times), key=lambda x: abs(x[1] - time.time() + start_song_time))
@@ -140,7 +146,10 @@ for i in range(100):
 
 
     #Put voice generation bit here
-    display_surface.blit(imp, (0,0))
+    if squat_buffer == 1:
+        display_surface.blit(imp2, (0,0))
+    else:
+        display_surface.blit(imp, (0,0))
 
     display_surface.blit(text, textRect)
     pygame.display.update()

@@ -51,7 +51,7 @@ while running:
 
     display_surface.blit(text, textRect)
     pygame.display.update()
-    score+=1
+    #score+=1
     text = font.render('Score :' + str(score), True, green, blue)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
