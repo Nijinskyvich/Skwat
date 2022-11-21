@@ -17,12 +17,13 @@ from beatDetection import get_beats
 from audio import youtube_download
 
 
-song_file = youtube_download('https://www.youtube.com/watch?v=auAfDfZY7zI')
+song_file = youtube_download('https://www.youtube.com/watch?v=L_jWHffIx5E')
 
 # get song beats
 beat_times = get_beats(song_file)
 
 # %%
+
 
 ser = serial.Serial('COM3', 115200, timeout=1)
 time.sleep(2)
@@ -144,6 +145,8 @@ for i in range(100):
                 print("YOU'RE TRASH")
             else:
                 print("GOOD")
+
+            pushup_time = pushup_time_now
             time.sleep(0.1)
 
 
